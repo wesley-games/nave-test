@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+        Folhas de Sprites
+    </title>
+    <script src="Animacao.js"></script>
+    <script src="Teclado.js"></script>
+    <script src="Spritesheet.js"></script>
+    <script src="Sonic.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="1300" height="600" style="border: 1px solid black;"></canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        var teclado = new Teclado(document);
+        var animacao = new Animacao(context);
+
+        var imgSonic = new Image();
+        imgSonic.src = 'spritesheet.png';
+        var sonic = new Sonic(context, teclado, imgSonic);
+        sonic.x = 0;
+        sonic.y = 200;
+        animacao.novoSprite(sonic);
+
+        imgSonic.onload = function () {
+            animacao.ligar();
+        }
+    </script>
+</body>
+
+</html>

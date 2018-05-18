@@ -9,7 +9,14 @@ function Bola(context) {
 }
 
 Bola.prototype = {
+    // Interface da animação
     atualizar: function () {
+        if (this.x < this.raio || this.x > this.context.canvas.width - this.raio) {
+            this.velocidadeX *= -1;
+        }
+        if (this.y < this.raio || this.y > this.context.canvas.height - this.raio) {
+            this.velocidadeY *= -1;
+        }
         this.x += this.velocidadeX;
         this.y += this.velocidadeY;
     },
@@ -20,5 +27,17 @@ Bola.prototype = {
         this.context.arc(this.x, this.y, this.raio, 0, 2 * Math.PI, false);
         this.context.fill();
         this.context.restore();
+    },
+    // Interface da colisão
+    retangulosColisao: function () {
+        return [{
+            x: this.x - this.raio,
+            y: this.y - this.raio,
+            largura: this.raio * 2,
+            altura: this.raio * 2
+        }];
+    },
+    colidiuCom: function (sprite) {
+        console.log('PÁ !');
     }
 }
